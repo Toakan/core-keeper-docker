@@ -22,7 +22,7 @@ set -m
 
 rm -f /tmp/.X99-lock
 
-Xvfb :99 -screen 0 1x1x24 -nolisten tcp &
+Xvfb :99 -screen 0 1x1x24 -nolisten tcp -nolisten unix &
 xvfbpid=$!
 
 rm -f GameID.txt
@@ -40,6 +40,7 @@ while [ ! -f GameID.txt ]; do
 done
 
 echo "Your Game ID is: $(cat GameID.txt)" >> CoreKeeperServerLog.txt
+echo "Your Game ID is: $(cat GameID.txt)"
 
 wait $ckpid
 ckpid=""
