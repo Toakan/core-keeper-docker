@@ -29,7 +29,7 @@ rm -f GameID.txt
 
 chmod +x ./CoreKeeperServer
 
-DISPLAY=:99 LD_LIBRARY_PATH="$LD_LIBRARY_PATH:../Steamworks SDK Redist/linux64/" ./CoreKeeperServer -batchmode -logfile -world "${WORLD_INDEX}" -worldname "${WORLD_NAME}" -worldseed "${WORLD_SEED}" -gameid "${GAME_ID}" -ip "${IP}" -port "${PORT}" -datapath "${STEAMAPPDATADIR}" -maxplayers "${MAX_PLAYERS}" -logfile CoreKeeperServerLog.txt &
+DISPLAY=:99 LD_LIBRARY_PATH="$LD_LIBRARY_PATH:../Steamworks SDK Redist/linux64/" ./CoreKeeperServer -batchmode -logfile -world "${WORLD_INDEX}" -worldname "${WORLD_NAME}" -worldseed "${WORLD_SEED}" -gameid "${GAME_ID}" -ip "${IP}" -port "${PORT}" -datapath "${STEAMAPPDATA}" -maxplayers "${MAX_PLAYERS}" -logfile CoreKeeperServerLog.txt &
 
 ckpid=$!
 
@@ -39,7 +39,7 @@ while [ ! -f GameID.txt ]; do
         sleep 0.1
 done
 
-echo "Game ID: $(cat GameID.txt)"
+echo "Your Game ID is: $(cat GameID.txt)" >> CoreKeeperServerLog.txt
 
 wait $ckpid
 ckpid=""

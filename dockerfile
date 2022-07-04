@@ -8,6 +8,7 @@ LABEL maintainer='tom@toakan.uk'
 ENV STEAMAPPID 1963720
 ENV STEAMAPP core-keeper
 ENV STEAMAPPDIR "${HOMEDIR}/${STEAMAPP}"
+ENV STEAMAPPDATA "${HOMEDIR}/${STEAMAPP}-data"
 
 # Setup default files
 COPY ./entry.sh ${HOMEDIR}/entry.sh
@@ -19,6 +20,7 @@ RUN set -x \
         && apt-get install -y --no-install-recommends --no-install-suggests \
         xvfb libx32gcc-s1 lib32gcc-s1 build-essential\
         && mkdir -p "${STEAMAPPDIR}" \
+        && mkdir -p "${HOMEDIR}/${STEAMAPP}-data" \
         && chmod +x "${HOMEDIR}/entry.sh" \
         && chmod +x "${HOMEDIR}/launch.sh" \
         && chown -R "${USER}:${USER}" "${HOMEDIR}/entry.sh" "${HOMEDIR}/launch.sh" "${STEAMAPPDIR}"
@@ -42,3 +44,5 @@ WORKDIR ${HOMEDIR}
 VOLUME ${STEAMAPPDIR}
 
 CMD ["bash", "entry.sh"]
+
+EXPOSE ${PORT}
