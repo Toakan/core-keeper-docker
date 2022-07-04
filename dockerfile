@@ -44,5 +44,3 @@ WORKDIR ${HOMEDIR}
 VOLUME ${STEAMAPPDIR}
 
 CMD ["bash", "entry.sh"]
-
-EXPOSE ${PORT}
