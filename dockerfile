@@ -33,7 +33,7 @@ ENV WORLD_INDEX=0 \
         DATA_PATH="" \
         MAX_PLAYERS=10 \
         IP="0.0.0.0" \      
-        PORT="27015"
+        PORT=""
 
 # Switch to user
 USER ${USER}
@@ -44,3 +44,5 @@ WORKDIR ${HOMEDIR}
 VOLUME ${STEAMAPPDIR}
 
 CMD ["bash", "entry.sh"]
+
+EXPOSE ${PORT}
